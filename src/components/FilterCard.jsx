@@ -5,10 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setSearchedQuery } from '@/redux/jobSlice'
 
 const fitlerData = [
-    {
-        fitlerType: "Location",
-        array: ["Adana", "Antalya", "Ankara", "İstanbul", "İzmir", "Bursa", "Konya"]
-    },
+
     {
         fitlerType: "Industry",
         array: ["Software Engineer", "Data Scientist", "Graphic Designer", "Marketing Specialist", "Project Manager", "Business Analyst"]

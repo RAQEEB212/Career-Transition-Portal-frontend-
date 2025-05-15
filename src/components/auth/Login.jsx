@@ -28,27 +28,75 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true));
+
+        // —————— TEST ACCOUNTS ——————
+        // 1) Admin/Recruiter test user
+        if (
+            input.email === "mustafaadmin@gmail.com" &&
+            input.password === "123" &&
+            input.role === "recruiter"
+        ) {
+            dispatch(
+                setUser({
+                    _id: "test-recruiter-id",
+                    fullname: "Mustafa Admin",
+                    email: input.email,
+                    phoneNumber: "0000000000",
+                    role: input.role,
+                    profile: {},
+                })
+            );
+            toast.success("Logged in as Recruiter (test)");
+            navigate("/admin/jobs");        // ← your recruiter/admin dashboard route
+            dispatch(setLoading(false));
+            return;
+        }
+
+        // 2) Student test user
+        if (
+            input.email === "mustafastudent@gmail.com" &&
+            input.password === "123" &&
+            input.role === ""
+        ) {
+            dispatch(
+                setUser({
+                    _id: "test-student-id",
+                    fullname: "Mustafa Student",
+                    email: input.email,
+                    phoneNumber: "0000000000",
+                    role: input.role,
+                    profile: {},
+                })
+            );
+            toast.success("Logged in as Student (test)");
+            navigate("/student");      // ← your student dashboard route
+            dispatch(setLoading(false));
+            return;
+        }
+
+        // —————— REAL LOGIN FALLBACK ——————
         try {
-            dispatch(setLoading(true));
-            const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                withCredentials: true,
-            });
+            const res = await axios.post(
+                `${USER_API_END_POINT}/login`,
+                input,
+                {
+                    headers: { "Content-Type": "application/json" },
+                    withCredentials: true,
+                }
+            );
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
-                navigate("/");
                 toast.success(res.data.message);
+                navigate("/");
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
+            console.error(error);
+            toast.error(error.response?.data?.message || "Login failed");
         } finally {
             dispatch(setLoading(false));
         }
-    }
-    useEffect(()=>{
+    };    useEffect(()=>{
         if(user){
             navigate("/");
         }
