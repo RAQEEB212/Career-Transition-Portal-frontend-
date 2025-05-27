@@ -16,24 +16,19 @@ const HeroSection = () => {
     }
 
     return (
-        <div className='text-center'>
-            <div className='flex flex-col gap-5 my-10'>
-                {/*<span className=' mx-auto px-4 py-2 rounded-full bg-gray-100 text-[#F83002] font-medium'>No. 1 Job Hunt Website</span>*/}
-                <h1 className='text-5xl font-bold'>
-                    <span className='text-[#6A38C2]'>Career Transition Portal</span>
-                </h1>                <p>The Career Transition Portal (CTP) aims to support graduate students by providing functionalities with <br /> an inside look of how a graduate student’s career could look like with additional features such as  resume <br/> building, job listings, and career progressions.</p>
-                <div className='flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto'>
-                    <input
-                        type="text"
-                        placeholder='Find your dream jobs'
-                        onChange={(e) => setQuery(e.target.value)}
-                        className='outline-none border-none w-full'
-
-                    />
-                    <Button onClick={searchJobHandler} className="rounded-r-full bg-[#6A38C2]">
-                        <Search className='h-5 w-5' />
-                    </Button>
-                </div>
+        <div className="flex flex-col md:flex-row items-center justify-center min-h-[80vh] px-6 md:px-20 bg-[#E8F1FA] font-sans">
+            <div className="flex-1 text-left">
+                <h1 className="text-[48px] font-extrabold text-[#1F2937] mb-4 leading-tight">
+                    Career Transition Portal
+                </h1>
+                <p className="text-[18px] text-[#4B5563] max-w-md font-normal">
+                    The Career Transition Portal (CTP) aims to support graduate students by providing functionalities with
+                    an inside look of how a graduate student’s career could look like with additional features such as resume
+                    building, job listings, and career progressions.
+                </p>
+            </div>
+            <div className="flex-1 mt-10 md:mt-0 flex justify-center">
+                <img src="/landing.png" alt="Student at laptop" className="max-w-sm w-full" />
             </div>
         </div>
     )

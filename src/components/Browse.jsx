@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Navbar from './shared/Navbar'
 import Job from './Job';
+import { Button } from './ui/button'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
@@ -24,8 +25,62 @@ const Browse = () => {
                 <div className='grid grid-cols-3 gap-4'>
                     {
                         allJobs.map((job) => {
+                            console.log("jobs",job.title);
+                            const cleanedTitle = job.title?.trim();
+
+                            const mapping = {
+                                "Engineering": {
+                                    title: "Engineering",
+                                    subfield: "Mechanical, Civil, Electrical",
+                                    description: "Explore design, mechanical, and civil roles"
+                                },
+                                "Education": {
+                                    title: "Education",
+                                    subfield: "Teaching, Curriculum Planning",
+                                    description: "Find teaching and curriculum planning jobs"
+                                },
+                                "Business": {
+                                    title: "Business",
+                                    subfield: "Marketing, HR, Finance",
+                                    description: "Search marketing, HR, and sales opportunities"
+                                },
+                                "Computer Science": {
+                                    title: "Computer Science",
+                                    subfield: "Software Development, AI, Cybersecurity",
+                                    description: "Look into software and tech careers"
+                                },
+                                "Medicine": {
+                                    title: "Medicine",
+                                    subfield: "Nursing, General Practice, Surgery",
+                                    description: "Browse healthcare and clinical roles"
+                                }
+                            };
+
+                            const sampleText = mapping[cleanedTitle] || {
+                                title: job.title,
+                                description: "Discover opportunities in this field"
+                            };
+                            console.log("sample ",sampleText.title);
+
                             return (
-                                <Job key={job._id} job={job}/>
+                                <div key={job._id}>
+                                    <p className="text-sm font-semibold">{sampleText.title}</p>
+                                    <div className="flex flex-wrap gap-2 my-1">
+                                        {sampleText.subfield?.split(',').map((sub, idx) => (
+                                            <Button
+                                                key={idx}
+                                                className="bg-white text-black hover:bg-blue-100 border "
+                                            >
+                                                {sub.trim()}
+                                            </Button>
+                                        ))}
+                                    </div>
+                                    <p className="text-sm text-gray-500">{sampleText.description}</p>
+                                    <button className="mt-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-black hover:bg-gray-100 transition">
+                                        Details
+                                    </button>
+                                    <Job job={job} />
+                                </div>
                             )
                         })
                     }
