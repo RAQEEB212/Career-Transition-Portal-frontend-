@@ -51,7 +51,7 @@ const Browse = () => {
                                 },
                                 "Medicine": {
                                     title: "Medicine",
-                                    subfield: "Nursing, General Practice, Surgery",
+                                    subfield: "Medicine,Nursing,Dentistry, Pharmacy",
                                     description: "Browse healthcare and clinical roles"
                                 }
                             };
