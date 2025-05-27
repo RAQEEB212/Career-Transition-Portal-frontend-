@@ -76,9 +76,7 @@ const Browse = () => {
                                         ))}
                                     </div>
                                     <p className="text-sm text-gray-500">{sampleText.description}</p>
-                                    <button className="mt-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-black hover:bg-gray-100 transition">
-                                        Details
-                                    </button>
+
                                     <Job job={job} />
                                 </div>
                             )
