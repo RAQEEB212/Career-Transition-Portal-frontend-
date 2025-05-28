@@ -3,6 +3,7 @@ import Navbar from './components/shared/Navbar'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
+import SubCategory from './components/SubCategory';
 import Jobs from './components/Jobs'
 import Browse from './components/Browse'
 import Profile from './components/Profile'
@@ -49,6 +50,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/JobApplied",
     element: <JobApplied />
+  },
+  {
+    path: "/category/:mainCategory",
+    element: <SubCategory />
   },
   // admin ke liye yha se start hoga
   {

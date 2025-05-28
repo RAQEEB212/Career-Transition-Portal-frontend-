@@ -130,7 +130,9 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 />
                             </div>
                             <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="file" className="text-right">Resume</Label>
+                                <Label htmlFor="file" className="text-right"><p className="text-red-700"> upload the
+                                    resume necessory </p>
+                                </Label>
                                 <Input
                                     id="file"
                                     name="file"

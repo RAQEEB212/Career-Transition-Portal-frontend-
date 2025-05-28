@@ -5,6 +5,7 @@ import { Button } from './ui/button'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
+import { useLocation } from 'react-router-dom';
 
 // const randomJobs = [1, 2,45];
 
@@ -12,6 +13,8 @@ const Browse = () => {
     useGetAllJobs();
     const {allJobs} = useSelector(store=>store.job);
     const dispatch = useDispatch();
+    const location = useLocation();
+    const query = location.state?.query;
     useEffect(()=>{
         return ()=>{
             dispatch(setSearchedQuery(""));
@@ -20,6 +23,14 @@ const Browse = () => {
     return (
         <div>
             <Navbar />
+            {query && (
+              <div className="max-w-7xl mx-auto mt-8">
+                <h2 className="text-2xl font-semibold">{query}</h2>
+                {location.state?.description && (
+                  <p className="text-gray-600 mt-1">{location.state.description}</p>
+                )}
+              </div>
+            )}
             <div className='max-w-7xl mx-auto my-10'>
                 <h1 className='font-bold text-xl my-10'>Search Results ({allJobs.length})</h1>
                 <div className='grid grid-cols-3 gap-4'>
